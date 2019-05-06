@@ -1,0 +1,13 @@
+
+$box-shadow-un:0px 0px 11px rgba(185, 184, 184, 0.49019);
+
+body{
+    box-shadow:$box-shadow-un;
+    .uneClasse{
+        padding: 5%;
+    }
+}
+
+nav{
+    box-shadow:$box-shadow-un;
+}

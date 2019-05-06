@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}&#9992; Recherche{% endblock %}
+
+{% block body %}
+<div class="row">
+        <div class="col s12" style="width : 50%; margin : 15px; margin-top: 60px ; border : solid 1px black; border-radius : 5px; background-color : whitesmoke; text-align : center; padding : 10px;">
+                
+            <h5 style="text-align : center;">Rechercher un vol</h5>
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">flight_takeoff</i>
+                    <input type="text" name="aeroportDepart" placeholder="Aéroport Départ" class="autocomplete" id="inputAeroportDepart">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">flight_land</i>
+                    <input type="text" name="aeroportArrivée" placeholder="Aéroport Arrivée" class="autocomplete" id="inputAeroportArrivee">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">event</i>
+                    <input type="text" name="dateDepart" class="datepicker" placeholder="Jour du départ" id="inputJourDepart">
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">schedule</i>
+                    <input type="text" name="heureDepart" class="timepicker" placeholder="Heure du départ" id="inputHeureDepart">
+                </div>
+          </div>
+          
+          <div class="row">
+              <div class="input-field col s6">
+                  <i class="material-icons prefix">event</i>
+                  <input type="text" name="dateArrivée" class="datepicker" placeholder="Jour d'arrivée" id="inputJourArrivee">
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">schedule</i>
+                    <input type="text" name="heureArrivée" class="timepicker" placeholder="Heure d'arrivée" id="inputHeureArrivee">
+            </div>
+        </div>
+        
+        <!-- <table style="margin-top : -25px;">
+            <th>
+                <td>
+                    <p>
+                        <label>
+                            <input type="radio" class="with-gap" id="Eco" name="typePlace" value="Eco" checked>
+                            <span>Eco</span>
+                        </label>
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        <label>
+                            <input type="radio" class="with-gap" id="Premium" name="typePlace" value="Premium">
+                            <span>Premium</span>
+                        </label>
+                    </p>
+                </td>
+                <td>
+            <p>
+                <label>
+                    <input type="radio" class="with-gap" id="Business" name="typePlace" value="Business" >
+                    <span>Business</span>
+                </label>
+            </p>
+        </td>
+    </th>
+</table> -->
+
+        <button class="btn waves-effect waves-light" onclick="Recherchevols()">Rechercher
+            <i class="material-icons right">search</i>
+        </button>
+    </div>
+
+<div id="volsrecherches" style="width : 45%; Height : 600px; background-color : transparent; float : right; margin-right : 10px; overflow-y : auto;">
+    
+    </div>
+</div>
+
+
+
+<script>
+    
+    const inputAeroportDepart = document.getElementById('inputAeroportDepart')
+    const inputAeroportArrivee = document.getElementById('inputAeroportArrivee')
+    const inputJourDepart = document.getElementById('inputJourDepart')
+    const inputHeureDepart = document.getElementById('inputHeureDepart')
+    const inputJourArrivee = document.getElementById('inputJourArrivee')
+    const inputHeureArrivee = document.getElementById('inputHeureArrivee')
+    
+    
+    const volsrecherches = document.getElementById('volsrecherches')
+    
+    function addFlightsLodader(){
+        $('#divFiltereds').html("<div class='LoadingFlights'></div><div class='LoadingFlights'></div><div class='LoadingFlights'></div><div class='LoadingFlights'></div>");
+      }
+
+/**function Recherchevols(offsetRequest){
+        console.log("recherche")
+        const url = "{{path('filtre_vol')}}"
+        $.ajax({
+            method: "POST",
+            url: url,
+            data: { "inputAeroportDepart=" + inputAeroportDepart.value +"&inputAeroportArrivee="
+            +inputAeroportArrivee.value + "&inputJourDepart=" + inputJourDepart.value + "&inputHeureDepart="
+            + inputHeureDepart.value + "&inputJourArrivee" + inputJourArrivee.value + "&inputHeureArrivee"
+            + inputHeureArrivee.value "&offsetRequest="+offsetRequest,
+                
+                radioTypePlace = $('input[name="typePlace"]:checked').val()  },
+            
+            success : function(msg, statut){
+                volsrecherches.innerHTML = msg
+                console.log("sa marche")        },
+          })
+    }*/
+
+    function Recherchevols(offsetRequest) {
+       
+        const url = "{{path('filtre_vol')}}";
+        addFlightsLodader()
+          $.ajax({
+              type: "POST",
+              url: url,
+              data : "inputAeroportDepart=" + inputAeroportDepart.value +"&inputAeroportArrivee="
+              +inputAeroportArrivee.value + "&inputJourDepart=" + inputJourDepart.value + "&inputHeureDepart="
+              + inputHeureDepart.value + "&inputJourArrivee=" + inputJourArrivee.value + "&inputHeureArrivee="
+              + inputHeureArrivee.value,
+                  success: function (resultat) {
+                $('#volsrecherches').html(resultat);    
+              },
+              error: function (resultat) {
+                $('#volsrecherches').html("<h3 style='color:red;'>Erreur lors de la recherche</h3>");
+              }
+            });
+            console.log("samarche")
+      
+      };
+
+</script>
+
+{% endblock %}

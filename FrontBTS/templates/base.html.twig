@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{asset('Assets/CSS/materialize.css')}}">
+        <link rel="stylesheet" href="{{asset('Assets/CSS/Global.css')}}">
+        <link rel="stylesheet" href="{{asset('Assets/CSS/accueil.css')}}">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body background="{{asset('Assets/Media/Sydney.jpg')}}">
+      <nav>
+        <div class="nav-wrapper">
+            <a href="{{ path('accueil')}}" class="brand-logo center">AirAtlantique</a>
+          <ul class="left">
+            <li><a href="{{ path('accueil')}}"><b>Accueil</b></a></li>
+            <li><a href="{{ path('rechercheVol')}}">Rechercher un vol</a></li>
+            <li><a href="{{ path('acheterBillets')}}">Acheter un billet</a></li>
+            <li><a href="{{ path('voirBillets')}}">Voir mes billets</a></li>
+          </ul>
+          <ul class="right">
+            <li><a href="#" class="right"><i class="material-icons">account_circle</i></a></li>
+          </ul>
+
+        </div>
+      </nav>
+              
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('Assets/js/bin/materialize.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('Assets/js/base.js')}}"></script>
+        {% endblock %}
+        
+    </body>
+</html>

@@ -1,0 +1,11 @@
+{% for vol in vols %}
+<div style="background : white; margin-top : 10px; border : solid 1px black; border-radius : 4px;">
+    <div class="row" style="background-color : #913535 ; margin : 5px;">
+        <h5 style="float : left; margin : 5px; text-align : center; color : white;"><i class="material-icons prefix">flight_takeoff</i> - {{vol.nom_aeroport_depart}}</br>{{vol.pays_aeroport_depart}}</h5>
+        <h5 style="float : right; margin : 5px; text-align : center; color : white;"><i class="material-icons prefix">flight_land</i> - {{vol.nom_aeroport_arrivee}}</br>{{vol.pays_aeroport_arrivee}}</h5>
+    </div>
+    <div class="row" style="text-align : center;">
+        <h6> <b>{{vol.place_eco}} / {{vol.total_place_eco}}</b> places Eco | <b>{{vol.place_premium}} / {{vol.total_place_premium}}</b> places Premium | <b>{{vol.place_business}} / {{vol.total_place_business}}</b> places Business</h6>
+    </div>    
+</div>
+{% endfor %}

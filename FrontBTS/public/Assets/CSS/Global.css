@@ -1,0 +1,14 @@
+body {
+  -webkit-box-shadow: 0px 0px 11px rgba(185, 184, 184, 0.49019);
+          box-shadow: 0px 0px 11px rgba(185, 184, 184, 0.49019);
+}
+
+body .uneClasse {
+  padding: 5%;
+}
+
+nav {
+  -webkit-box-shadow: 0px 0px 11px rgba(185, 184, 184, 0.49019);
+          box-shadow: 0px 0px 11px rgba(185, 184, 184, 0.49019);
+}
+/*# sourceMappingURL=Global.css.map */

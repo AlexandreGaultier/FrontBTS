@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}&#9992; AirAtlantique{% endblock %}
+
+{% block body %}
+
+    <div class="row" style="width : 30%; float : left; margin : 15px; border : solid 1px black; border-radius : 5px; background-color : whitesmoke; text-align : center; padding : 10px;">
+      <form action="/src/Controller/AccueilController.php" method="GET" class="col s12" style="margin-left : -15px;">
+   
+        <h5 style="text-align : center;">Acheter un billet</h5>
+    
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">flight_takeoff</i>
+            <input type="text" name="aeroportDepart" placeholder="Aéroport Départ">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">flight_land</i>
+            <input type="text" name="aeroportArrivée" placeholder="Aéroport Arrivée">
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">event</i>
+            <input type="text" name="dateDepart" class="datepicker" placeholder="Jour du départ">
+          </div>
+        <div class="input-field col s6">
+          <i class="material-icons prefix">schedule</i>
+          <input type="text" name="heureDepart" class="timepicker" placeholder="Heure du départ">
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">event</i>
+          <input type="text" name="dateArrivée" class="datepicker" placeholder="Jour d'arrivée">
+        </div>
+        <div class="input-field col s6">
+          <i class="material-icons prefix">schedule</i>
+          <input type="text" name="heureArrivée" class="timepicker" placeholder="Heure d'arrivée">
+        </div>
+      </div>
+      
+      <table style="margin-top : -25px;">
+        <th>
+          <td>
+            <p>
+              <label>
+                <input type="radio" class="with-gap" id="Eco" name="typePlace" value="Eco" checked>
+              <span>Eco</span>
+            </label>
+          </p>
+        </td>
+        <td>
+          <p>
+            <label>
+              <input type="radio" class="with-gap" id="Premium" name="typePlace" value="Eco">
+              <span>Premium</span>
+            </label>
+          </p>
+        </td>
+        <td>
+          <p>
+            <label>
+              <input type="radio" class="with-gap" id="Business" name="typePlace" value="Eco" >
+              <span>Business</span>
+            </label>
+          </p>
+        </td>
+      </th>
+    </table>
+    
+    <button class="btn waves-effect waves-light" type="submit" onclick="Recherchevols">Rechercher
+      <i class="material-icons right">search</i>
+    </button>
+    
+  </form>
+  
+</div>
+<h2 style="text-align : center; color : white;">Destinations populaires</h2>
+
+<div class="carousel" style="width : auto; margin : auto; z-index : -5;">
+  
+  <a class="carousel-item" href="#one!" style="width:500px !important"><img src="{{asset('Assets/Media/London.jpg')}}"></a>
+  <a class="carousel-item" href="#two!" style="width:500px !important"><img src="{{asset('Assets/Media/Manathan.jpg')}}"></a>
+  <a class="carousel-item" href="#three!" style="width:500px !important"><img src="{{asset('Assets/Media/Sydney.jpg')}}"></a>
+  <a class="carousel-item" href="#four!" style="width:500px !important"><img src="{{asset('Assets/Media/Tokyo.jpg')}}"></a>
+  <a class="carousel-item" href="#five!" style="width:500px !important"><img src="{{asset('Assets/Media/Mountain.jpg')}}"></a>
+</div>
+
+</div>
+{% endblock %}
