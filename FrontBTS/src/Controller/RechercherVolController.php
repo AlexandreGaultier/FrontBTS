@@ -41,16 +41,16 @@ class RechercherVolController extends AbstractController
             JOIN avion plane on plane.id = flight.id_avion_id
             WHERE airportDepart.nom LIKE :inputAeroportDepart 
             AND airportArrivee.nom LIKE :inputAeroportArrivee
-            AND date_depart > '2018-02-29 00:02'
-            AND date_arrivee < '2020-08-01 23:58'
+            AND date_depart > :inputDateetJourDepart
+            AND date_arrivee < :inputDateetJourArrivee
         ";
 
         $stmt = $con->prepare($sql);
         $stmt->execute([
             'inputAeroportDepart' => "%".$_POST{'inputAeroportDepart'}."%",
             'inputAeroportArrivee' => "%".$_POST{'inputAeroportArrivee'}."%",
-            //'inputDateetJourDepart' => $_POST{'inputJourDepart'}." ".$_POST{'inputHeureDepart'},
-            //'inputDateetJourArrivee' => $_POST{'inputJourArrivee'}." ".$_POST{'inputHeureArrivee'}
+            'inputDateetJourDepart' => $_POST{'inputJourDepart'}." ".$_POST{'inputHeureDepart'},
+            'inputDateetJourArrivee' => $_POST{'inputJourArrivee'}." ".$_POST{'inputHeureArrivee'}
             
         ]);
 
