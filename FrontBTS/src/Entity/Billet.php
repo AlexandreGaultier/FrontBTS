@@ -27,7 +27,7 @@ class Billet
     private $typePlace;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\vol", inversedBy="listeBillets")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Vol", inversedBy="listeBillets")
      */
     private $idVol;
 
@@ -66,12 +66,12 @@ class Billet
         return $this;
     }
 
-    public function getIdVol(): ?vol
+    public function getIdVol(): ?Vol
     {
         return $this->idVol;
     }
 
-    public function setIdVol(?vol $idVol): self
+    public function setIdVol(?Vol $idVol): self
     {
         $this->idVol = $idVol;
 

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row" style="margin-left : 350px">
+
+        <div class="col s12" style="width : 60%; margin : 15px; border : solid 1px black; border-radius : 5px; background-color : whitesmoke; text-align : center; padding : 10px;">
+            
+            
+            <h3>Inscription</h3>
+            
+            {{ form_start(form) }}
+    
+    <div class="input-field col s4">
+        {{ form_row(form.prenom, {'label' : 'Prénom', 'attr' : {'placeholder': 'ex : Léna'}}) }}
+    </div>
+    <div class="input-field col s4">
+        {{ form_row(form.nom, {'label' : 'Nom', 'attr' : {'placeholder': 'ex : Parc'}}) }}
+    </div>
+    <div class="input-field col s3">
+        {{ form_row(form.sexe, {'label' : 'Genre', 'attr' : {'placeholder': 'Homme/Femme'}}) }}
+    </div>
+    <div class="input-field col s12">
+        {{ form_row(form.email, {'label' : 'Adresse Email', 'attr' : {'placeholder': 'ex : lena.parc@gmail.com'}}) }}
+    </div>
+    
+    <div class="input-field col s4">
+        {{ form_row(form.Username, {'label' : 'Identifiant', 'attr' : {'placeholder': 'ex : LenaP'}}) }}
+    </div>
+    <div class="input-field col s4">
+        {{ form_row(form.Password, {'label' : 'Mot De Passe', 'attr' : {'placeholder': '8 caractères minimum'}}) }}
+    </div>
+    <div class="input-field col s4">
+        {{ form_row(form.confirm_Password, {'label' : 'Confirmer Le Mot De Passe', 'attr' : {'placeholder': '8 caractères minimum'}}) }}
+    </div>
+    
+    <button type="submit" class="btn btn-success">Confirmer</button>
+    {{ form_end(form) }}
+    
+        </div>
+    </div>
+
+{% endblock body %}
