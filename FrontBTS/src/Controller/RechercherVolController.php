@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Vol;
+use App\Entity\Billet;
+use App\Entity\Aeroport;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,7 +34,7 @@ class RechercherVolController extends AbstractController
 
         $con = $doctrine->getEntityManager()->getConnection();
         $sql = "
-            SELECT flight.date_depart, flight.date_arrivee, flight.place_eco, flight.place_premium, flight.place_business, 
+            SELECT flight.id, flight.date_depart, flight.date_arrivee, flight.place_eco, flight.place_premium, flight.place_business, 
             airportDepart.nom as nom_aeroport_depart, airportDepart.pays as pays_aeroport_depart, 
             airportArrivee.nom as nom_aeroport_arrivee, airportArrivee.pays as pays_aeroport_arrivee, 
             plane.place_eco as total_place_eco, plane.place_premium as total_place_premium, plane.place_business as total_place_business
@@ -57,7 +60,20 @@ class RechercherVolController extends AbstractController
         $vols = $stmt->fetchAll();
 
         return $this->render('rechercher_vol/affichage_vols.html.twig', [
-            'vols'=>$vols
+            'vols'=>$vols,
+        ]);
+    }
+
+    /**
+     * @Route("/billet/{id}", name="billet")
+     */
+    public function billet($id)
+    {
+        $repo = $this->getDoctrine()->getRepository(Billet::class);
+        $billet = $repo->find($id);
+
+        return $this->render('rechercher_vol/billet.html.twig', [
+            'billet' => $billet
         ]);
     }
 }
@@ -73,5 +89,5 @@ class RechercherVolController extends AbstractController
 //         JOIN avion plane on plane.id = flight.id
 //         WHERE airportDepart.nom LIKE "%%" 
 //         AND airportArrivee.nom LIKE "%%"
-//         AND date_depart > "2019-05-20 08:00"
-//         AND date_arrivee < "2019-05-25 08:00"
+//         AND date_depart > "2019-05-01 08:00"
+//         AND date_arrivee < "2019-05-31 08:00"

@@ -100,25 +100,6 @@
         $('#divFiltereds').html("<div class='LoadingFlights'></div><div class='LoadingFlights'></div><div class='LoadingFlights'></div><div class='LoadingFlights'></div>");
       }
 
-/**function Recherchevols(offsetRequest){
-        console.log("recherche")
-        const url = "{{path('filtre_vol')}}"
-        $.ajax({
-            method: "POST",
-            url: url,
-            data: { "inputAeroportDepart=" + inputAeroportDepart.value +"&inputAeroportArrivee="
-            +inputAeroportArrivee.value + "&inputJourDepart=" + inputJourDepart.value + "&inputHeureDepart="
-            + inputHeureDepart.value + "&inputJourArrivee" + inputJourArrivee.value + "&inputHeureArrivee"
-            + inputHeureArrivee.value "&offsetRequest="+offsetRequest,
-                
-                radioTypePlace = $('input[name="typePlace"]:checked').val()  },
-            
-            success : function(msg, statut){
-                volsrecherches.innerHTML = msg
-                console.log("sa marche")        },
-          })
-    }*/
-
     function Recherchevols(offsetRequest) {
        
         const url = "{{path('filtre_vol')}}";
@@ -137,7 +118,7 @@
                 $('#volsrecherches').html("<h3 style='color:red;'>Erreur lors de la recherche</h3>");
               }
             });
-            console.log("samarche")
+            console.log("ça marche")
       
       };
 

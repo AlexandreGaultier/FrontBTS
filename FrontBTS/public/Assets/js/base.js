@@ -8,8 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Timepicker.init(elems);
   });
 
-  $(document).ready(function(){
-    $('.carousel').carousel();
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.carousel');
+    var instances = M.Carousel.init(elems);
   });
 
   $(document).ready(function(){
