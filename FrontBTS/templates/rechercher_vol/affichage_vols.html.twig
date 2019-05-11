@@ -18,8 +18,14 @@
     <div class="row" style="text-align : center;">
         <h6> <b>{{vol.place_eco}} / {{vol.total_place_eco}}</b> places Eco | <b>{{vol.place_premium}} / {{vol.total_place_premium}}</b> places Premium | <b>{{vol.place_business}} / {{vol.total_place_business}}</b> places Business</h6>
     </div>
+    {% if app.user %}
     <div style="text-align: center;">
         <a class="waves-effect waves-light btn-large" style="margin: 10px;" href="{{ path('billet', {'id': vol.id}) }}">Acheter un billet</a>
     </div>
+    {% else %}
+    <div style="text-align: center;">
+            <a class="waves-effect waves-light btn-large" style="margin: 10px;" href="{{ path('security_registration') }}">S'inscrire pour réserver un billet</a>
+        </div>
+    {% endif %}
 </div>
 {% endfor %}

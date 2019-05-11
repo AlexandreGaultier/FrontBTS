@@ -8,36 +8,46 @@
         <div style="background-color : #913535; text-align : center; width : 100%; padding : 10px; color : white;">
             <h4>Billet</h4>
         </div>
-        {# {{ dump(billet)}} #}
-        <div style="float : left; text-align : center; margin: 10px;">
-                <h5><i class="material-icons prefix">flight_takeoff</i> - {{billet.idVol.AeroportDepart.nom}}</h5></br>
-                <h6 style="margin-top : -20px;">{{billet.idVol.AeroportDepart.pays}}</h6></br>
-                <h5 style="margin-top : -15px;">{{billet.idVol.dateDepart|date('Y-m-d-H:i')}}</h5>
+         {# {{ dump(vol)}}  #}
+         <div style="float : left; text-align : center; margin: 15px;">
+             <h5><b>Départ</b></h5>
+                <h5><i class="material-icons prefix">flight_takeoff</i> - {{vol.AeroportDepart.nom}}</h5></br>
+                <h6 style="margin-top : -20px;">{{vol.AeroportDepart.pays}}</h6></br>
+                <h5 style="margin-top : -15px;">{{vol.dateDepart|date('Y-m-d')}}</h5>
+                <h5 style="margin-top : -10px;">{{vol.dateDepart|date('H:i')}}</h5>
+            </div>
+ 
+        <div style="float : right; text-align : center; margin: 15px;">
+                <h5><b>Arrivée</b></h5>
+                <h5><i class="material-icons prefix">flight_land</i> - {{vol.AeroportArrivee.nom}}</h5></br>
+                <h6 style="margin-top : -20px;">{{vol.AeroportArrivee.pays}}</h6></br>
+                <h5 style="margin-top : -15px;">{{vol.dateArrivee|date('Y-m-d')}}</h5>
+                <h5 style="margin-top : -10px;">{{vol.dateArrivee|date('H:i')}}</h5>
             </div>
 
-        <div style="float : right; text-align : center; margin: 10px;">
-                <h5><i class="material-icons prefix">flight_takeoff</i> - {{billet.idVol.AeroportArrivee.nom}}</h5></br>
-                <h6 style="margin-top : -20px;">{{billet.idVol.AeroportArrivee.pays}}</h6></br>
-                <h5 style="margin-top : -15px;">{{billet.idVol.dateArrivee|date('Y-m-d-H:i')}}</h5>
-            </div>
-        <div class="row" style="width: 20%;">
-        {% if app.user.getSexe == "Femme" %}<h5>Mme.{% else %} Mr.{% endif %}{{app.user.nom}} {{app.user.prenom}}</h5>
-            <h5>Avion : {{billet.idVol.idAvion.nom}}</h5>
+        <div class="row" style="width: 40%;">
+        {% if app.user.getSexe == "Femme" %}<h5>Mme.{% else %} <h5>Mr.{% endif %}{{app.user.nom}} {{app.user.prenom}}</h5>
+            <h5>Avion : {{vol.idAvion.nom}}</h5>
         </div>
         <h6>Choisissez votre classe pour acheter ce billet</h6>
     </div>
-    <div>
-
-        <button class="waves-effect waves-light btn" style="width : 14%; Height : 50px; margin-top : -55px; margin-right : 50px; border : solid 1px #475781; border-radius : 5px; background : #283148; z-index : 8888115; color : white;">
-            Billet Eco <b>{{billet.idVol.prixEco}}</b> <i class="material-icons prefix">euro_symbol</i>
+     <div>
+{% if vol.placeEco != vol.idAvion.placeEco %} 
+        <button class="waves-effect waves-light btn" href="{{ path('achatBillet', {'type': "eco"}) }}" style="width : 15%; Height : 50px; margin-top : -55px; margin-right : 50px; border : solid 1px #475781; border-radius : 5px; background : #283148; z-index : 8888115; color : white;">
+            Billet Eco <b>{{vol.prixEco}}</b> <i class="material-icons prefix">euro_symbol</i>
         </button>
-        <button class="waves-effect waves-light btn" style="width : 14%; Height : 50px; margin-top : -55px; border : solid 1px #475781; border-radius : 5px; background : #283148; z-index : 8888115; color : white;">
-            Billet Premium <b>{{billet.idVol.prixPremium}}</b> <i class="material-icons prefix">euro_symbol</i>
+{% endif %}
+{% if vol.placePremium != vol.idAvion.placePremium %}
+        <button class="waves-effect waves-light btn" href="{{ path('achatBillet', {'type': "premium"}) }}" style="width : 15%; Height : 50px; margin-top : -55px; border : solid 1px #475781; border-radius : 5px; background : #283148; z-index : 8888115; color : white;">
+            Billet Premium <b>{{vol.prixPremium}}</b> <i class="material-icons prefix">euro_symbol</i>
         </button>
-        <button class="waves-effect waves-light btn" style="width : 14%; Height : 50px; margin-top : -55px; margin-left : 50px; border : solid 1px #475781; border-radius : 5px; background : #283148; z-index : 8888115; color : white;">
-            Billet Business <b>{{billet.idVol.prixBusiness}}</b> <i class="material-icons prefix">euro_symbol</i>
-        </button>
-    </div>
+{% endif %}
+{% if vol.placeBusiness != vol.idAvion.placeBusiness %}
+        <button class="waves-effect waves-light btn" href="{{ path('achatBillet', {'type': "business"}) }}" style="width : 15%; Height : 50px; margin-top : -55px; margin-left : 50px; border : solid 1px #475781; border-radius : 5px; background : #283148; z-index : 8888115; color : white;">
+            Billet Business <b>{{vol.prixBusiness}}</b> <i class="material-icons prefix">euro_symbol</i>
+        </button>  
+{% endif %}
+    </div> 
 </center>
 
 {% endblock %}
